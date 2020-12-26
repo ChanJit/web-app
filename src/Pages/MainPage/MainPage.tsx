@@ -1,5 +1,5 @@
-import React from 'react';
-import './MainPage.less';
+import React from "react";
+import "./MainPage.less";
 
 const MainPage = () => {
   return (
@@ -8,6 +8,6 @@ const MainPage = () => {
       <p>456</p>
     </div>
   );
-}
+};
 
 export default MainPage;
