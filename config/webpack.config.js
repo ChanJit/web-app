@@ -56,8 +56,8 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 const swSrc = paths.swSrc;
 
 // style files regexes
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
+const cssRegex = /\.(?:le|c)ss$/;
+const cssModuleRegex = /\.module\.(?:le|c)ss$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
@@ -472,7 +472,7 @@ module.exports = function (webpackEnv) {
                 sourceMap: isEnvProduction
                   ? shouldUseSourceMap
                   : isEnvDevelopment,
-              }),
+              }, 'less-loader'),
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.
