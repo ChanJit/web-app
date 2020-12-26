@@ -4,6 +4,6 @@ import MainPage from './MainPage';
 
 test('renders learn react link', () => {
   render(<MainPage />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/123/i);
   expect(linkElement).toBeInTheDocument();
 });

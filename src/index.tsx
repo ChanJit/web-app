@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
-import MainPage from './Pages/MainPage/MainPage';
+import MainPage from './pages/MainPage/MainPage';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
