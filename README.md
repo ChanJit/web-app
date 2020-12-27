@@ -37,5 +37,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Majority test is tested on cypress, run the following code for the test. 
 
-export NODE_ENV=development 
-cypress open
+1) yarn start
+2) make sure http://localhost:3000 is running
+3) open a new tab in terminal. make sure is running the following code in this folder.
+4) export NODE_ENV=development 
+5) yarn cypress
