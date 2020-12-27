@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import './MainPage.less';
-import { TEmployeePageData } from './TMainPage';
+import { TEmployeePageData, TStatus } from '../type/TMainPage';
 import getEmployeeData from './mainPageHelper';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import PageLayout from '../../common/PageLayout/PageLayout';
 import EmployeeInformation from './components/EmployeeInformation/EmployeeInformation';
+import PageProvider from '../PageProvider/PageProvider';
 
 const MainPage = () => {
-  const [employeeData, setEmployeeData] = useState<Array<TEmployeePageData>>();
+  const defaultContextValue = {
+    status: TStatus.LOADING,
+    highestEarning: 0,
+    employeeData: [],
+  };
+
+  const [page, setPage] = useState<TEmployeePageData>(defaultContextValue);
   const getData = async () => {
-    try {
-      setEmployeeData(await getEmployeeData());
-    } catch (err) {
-      console.error(err.message);
-    }
+    const returnValue = await getEmployeeData();
+    setPage(returnValue);
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  if (false) {
-    return (
+  return (
+    <PageProvider value={{ page, setPage }}>
       <PageLayout>
         <div>
           <EmployeeInformation />
@@ -30,20 +34,20 @@ const MainPage = () => {
           <Button>testing</Button>
         </div>
       </PageLayout>
-    );
-  }
-  return (
-    <PageLayout>
-      <div>
-        <p>loading</p>
-        <Spinner animation="grow"/>
-        <Spinner animation="grow"/>
-        <Spinner animation="grow"/>
-        <Spinner animation="grow"/>
-        <Spinner animation="grow"/>
-        </div>
-      </PageLayout>
+    </PageProvider>
   );
+  // return (
+  //   <PageLayout>
+  //     <div>
+  //       <p>loading</p>
+  //       <Spinner animation="grow" />
+  //       <Spinner animation="grow" />
+  //       <Spinner animation="grow" />
+  //       <Spinner animation="grow" />
+  //       <Spinner animation="grow" />
+  //     </div>
+  //   </PageLayout>
+  // );
 };
 
 export default MainPage;
