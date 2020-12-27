@@ -129,6 +129,10 @@ const getEmployeeData = async ({
       highestEarning: 'RM 0.00',
       newJoinerDate: 'dd/mm/yyyy',
       employeeData: [],
+      sort: {
+        order: TSortOrder.DESC,
+        field: TSortField.JOINED_DATE,
+      },
     };
   }
 };

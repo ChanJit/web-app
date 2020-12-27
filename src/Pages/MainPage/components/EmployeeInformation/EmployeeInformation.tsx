@@ -9,11 +9,13 @@ const EmployeeInformation = () => {
     <div className="employeeHighlightRoot">
       <div className="companyInformation">
         <BsPeopleFill />
-        <p>{employeeData?.page?.employeeData?.length}</p> 
+        <p>{employeeData?.page?.employeeData?.length}</p>
       </div>
       <div className="companyHighlight">
         <p>Highest earning employee: {employeeData?.page?.highestEarning}</p>
-        <p>Employee most recently joined: {employeeData?.page?.newJoinerDate}</p>
+        <p>
+          Employee most recently joined: {employeeData?.page?.newJoinerDate}
+        </p>
       </div>
     </div>
   );

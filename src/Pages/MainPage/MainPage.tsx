@@ -12,6 +12,7 @@ import PageLayout from '../../common/PageLayout/PageLayout';
 import EmployeeInformation from './components/EmployeeInformation/EmployeeInformation';
 import EmployeeCardList from './components/EmployeeCardList/EmployeeCardList';
 import EmployeeSortHeader from './components/EmployeeSortHeader/EmployeeSortHeader';
+import EmployeeSortDropDown from './components/EmployeeSortDropDown/EmployeeSortDropDown';
 import PageProvider from '../PageProvider/PageProvider';
 
 const MainPage = () => {
@@ -44,6 +45,7 @@ const MainPage = () => {
       <PageProvider value={{ page, setPage }}>
         <PageLayout>
           <EmployeeInformation />
+          <EmployeeSortDropDown />
           <EmployeeSortHeader />
           <EmployeeCardList />
         </PageLayout>
