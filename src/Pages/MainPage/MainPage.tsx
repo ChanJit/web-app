@@ -53,17 +53,23 @@ const MainPage = () => {
     );
   } else if (page.status === TStatus.ERROR) {
     <PageLayout>
-      <p>Error</p>
+      <div className="centerDisplay">
+        <p>Error</p>
+      </div>
     </PageLayout>;
   }
   return (
     <PageLayout>
-      <p>loading</p>
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
+      <div className="centerDisplay">
+        <p>Loading</p>
+        <div>
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+        </div>
+      </div>
     </PageLayout>
   );
 };
