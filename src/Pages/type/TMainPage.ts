@@ -30,13 +30,16 @@ export enum TSortField {
   FULL_NAME = 'FULL_NAME',
   SALARY = 'SALARY',
 }
+
+export interface TSort {
+  order: TSortOrder;
+  field: TSortField;
+}
+
 export interface TEmployeePageData {
   status: TStatus;
   highestEarning: string;
   newJoinerDate: string;
-  employeeData: Array<TEmployeeProcessItem | null>;
-  sort?: {
-    order: TSortOrder;
-    field: TSortField;
-  };
+  employeeData: Array<TEmployeeProcessItem>;
+  sort?: TSort;
 }

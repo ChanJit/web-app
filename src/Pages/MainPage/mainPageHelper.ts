@@ -69,13 +69,13 @@ enum TField {
   SALARY = 'salary',
 }
 
-const mappingField = {
+export const mappingField = {
   [TSortField.JOINED_DATE]: TField.DATE_VALUE,
   [TSortField.FULL_NAME]: TField.FULL_NAME,
   [TSortField.SALARY]: TField.SALARY,
 };
 
-const sortFunction = {
+export const sortFunction = {
   [TSortOrder.DESC]: (
     processedData: Array<TEmployeeProcessItem>,
     field: TField,
