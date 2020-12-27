@@ -41,5 +41,5 @@ export interface TEmployeePageData {
   highestEarning: string;
   newJoinerDate: string;
   employeeData: Array<TEmployeeProcessItem>;
-  sort?: TSort;
+  sort: TSort;
 }

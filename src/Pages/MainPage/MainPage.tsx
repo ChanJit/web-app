@@ -6,12 +6,13 @@ import {
   TSortOrder,
   TSortField,
 } from '../type/TMainPage';
-import getEmployeeData from './mainPageHelper';
+import { getEmployeeData } from './mainPageHelper';
 import Spinner from 'react-bootstrap/Spinner';
 import PageLayout from '../../common/PageLayout/PageLayout';
 import EmployeeInformation from './components/EmployeeInformation/EmployeeInformation';
 import EmployeeCardList from './components/EmployeeCardList/EmployeeCardList';
 import EmployeeSortHeader from './components/EmployeeSortHeader/EmployeeSortHeader';
+import EmployeeSortDropDown from './components/EmployeeSortDropDown/EmployeeSortDropDown';
 import PageProvider from '../PageProvider/PageProvider';
 
 const MainPage = () => {
@@ -44,24 +45,33 @@ const MainPage = () => {
       <PageProvider value={{ page, setPage }}>
         <PageLayout>
           <EmployeeInformation />
+          <EmployeeSortDropDown />
           <EmployeeSortHeader />
           <EmployeeCardList />
         </PageLayout>
       </PageProvider>
     );
   } else if (page.status === TStatus.ERROR) {
-    <PageLayout>
-      <p>Error</p>
-    </PageLayout>;
+    return (
+      <PageLayout>
+        <div className="centerDisplay">
+          <p>Error</p>
+        </div>
+      </PageLayout>
+    );
   }
   return (
     <PageLayout>
-      <p>loading</p>
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
-      <Spinner animation="grow" />
+      <div className="centerDisplay">
+        <p>Loading</p>
+        <div>
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+          <Spinner animation="grow" />
+        </div>
+      </div>
     </PageLayout>
   );
 };

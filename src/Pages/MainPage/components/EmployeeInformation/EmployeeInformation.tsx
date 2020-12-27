@@ -6,11 +6,17 @@ import { PageContext } from '../../../PageProvider/PageProvider';
 const EmployeeInformation = () => {
   const employeeData = useContext(PageContext);
   return (
-    <div>
-      <BsPeopleFill />
-      <p>{employeeData?.page?.employeeData?.length}</p>
-      <p>{employeeData?.page?.highestEarning}</p>
-      <p>{employeeData?.page?.newJoinerDate}</p>
+    <div className="employeeHighlightRoot">
+      <div className="companyInformation">
+        <BsPeopleFill />
+        <p>{employeeData?.page?.employeeData?.length}</p>
+      </div>
+      <div className="companyHighlight">
+        <p>Highest earning employee: {employeeData?.page?.highestEarning}</p>
+        <p>
+          Employee most recently joined: {employeeData?.page?.newJoinerDate}
+        </p>
+      </div>
     </div>
   );
 };

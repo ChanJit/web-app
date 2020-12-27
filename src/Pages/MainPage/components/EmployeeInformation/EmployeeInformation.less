@@ -1,0 +1,60 @@
+@import '../../../../common/screenSize.less';
+@import 'bootstrap-less-port';
+
+.employeeHighlightRoot {
+  display: flex;
+  flex-direction: column;
+  @media @desktop {
+    justify-content: left;
+    flex-direction: row;
+  }
+}
+.employeeHighlightRoot p {
+  color: @gray-600;
+  font-size: 12px;
+  @media @desktop {
+    font-size: 24px;
+  }
+}
+
+.companyHighlight {
+  margin-bottom: @row * 2px;
+  background-color: @gray-200;
+  padding: @row * 2px @column * 2px;
+  @media @desktop {
+    margin-left: @row * 2px;
+    padding: @row * 5px @column * 5px;
+    justify-content: left;
+    flex-direction: row;
+    flex-grow: 2;
+  }
+}
+
+.companyInformation {
+  margin-bottom: @row * 2px;
+  padding: @row * 2px @column * 2px;
+  background-color: @gray-200;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media @desktop {
+    padding: @row * 5px @column * 5px;
+    justify-content: left;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+}
+
+.companyInformation svg {
+  background-color: @primaryColor;
+  color: white;
+  font-size: 80px;
+  margin: @row * 5px;
+  padding: @row * 3px;
+  border-radius: 50px;
+  flex-direction: row;
+  @media @desktop {
+    flex-direction: column;
+  }
+}

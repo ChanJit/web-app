@@ -92,7 +92,7 @@ export const sortFunction = {
     ),
 };
 
-const getEmployeeData = async ({
+export const getEmployeeData = async ({
   order,
   field,
 }: {
@@ -129,8 +129,10 @@ const getEmployeeData = async ({
       highestEarning: 'RM 0.00',
       newJoinerDate: 'dd/mm/yyyy',
       employeeData: [],
+      sort: {
+        order: TSortOrder.DESC,
+        field: TSortField.JOINED_DATE,
+      },
     };
   }
 };
-
-export default getEmployeeData;
