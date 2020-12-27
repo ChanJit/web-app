@@ -70,12 +70,15 @@ const getEmployeeData = async (): Promise<TEmployeePageData> => {
     const processedData: Array<TEmployeeProcessItem> = employeeData.map(
       mapEmplyeeData,
     );
+    const sortedProcessedData = processedData.sort((a, b) =>
+      a.dateValue > b.dateValue ? -1 : b.dateValue > a.dateValue ? 1 : 0,
+    );
 
     return {
       status: TStatus.DONE,
-      highestEarning: getHighestEarning(processedData),
-      newJoinerDate: getNewJoinerDate(processedData),
-      employeeData: processedData,
+      highestEarning: getHighestEarning(sortedProcessedData),
+      newJoinerDate: getNewJoinerDate(sortedProcessedData),
+      employeeData: sortedProcessedData,
     };
   } catch (e) {
     console.error('Error ', e);
