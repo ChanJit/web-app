@@ -17,13 +17,29 @@ export interface TEmployeeProcessItem extends TEmployeeData, TDateFormat {
   displaySalary: string;
 }
 export enum TStatus {
-  LOADING = 'loading',
-  DONE = 'done',
-  ERROR = 'error',
+  LOADING = 'LOADING',
+  DONE = 'DONE',
+  ERROR = 'ERROR',
 }
+export enum TSortOrder {
+  ACS = 'ACS',
+  DESC = 'DESC',
+}
+export enum TSortField {
+  JOINED_DATE = 'JOINED_DATE',
+  FULL_NAME = 'FULL_NAME',
+  SALARY = 'SALARY',
+}
+
+export interface TSort {
+  order: TSortOrder;
+  field: TSortField;
+}
+
 export interface TEmployeePageData {
   status: TStatus;
   highestEarning: string;
   newJoinerDate: string;
-  employeeData: Array<TEmployeeProcessItem | null>;
+  employeeData: Array<TEmployeeProcessItem>;
+  sort?: TSort;
 }

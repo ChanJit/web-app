@@ -1,0 +1,25 @@
+@import '../../../../common/screenSize.less';
+
+.employeeSortItem {
+  display: none;
+  @media @desktop {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: @row * 1px;
+    padding: @row * 2px @column * 2px;
+    background-color: @primaryColor;
+    color: @primaryFontColor;
+  }
+}
+.employeeSortInfo:hover {
+  @media @desktop {
+    cursor: pointer;
+    color: white;
+  }
+}
+.employeeSortInfo {
+  @media @desktop {
+    flex-grow: 1;
+    min-width: @row * 100px;
+  }
+}
