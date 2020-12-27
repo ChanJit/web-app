@@ -6,7 +6,7 @@ import {
   TSortOrder,
   TSortField,
 } from '../type/TMainPage';
-import {getEmployeeData} from './mainPageHelper';
+import { getEmployeeData } from './mainPageHelper';
 import Spinner from 'react-bootstrap/Spinner';
 import PageLayout from '../../common/PageLayout/PageLayout';
 import EmployeeInformation from './components/EmployeeInformation/EmployeeInformation';
@@ -52,11 +52,13 @@ const MainPage = () => {
       </PageProvider>
     );
   } else if (page.status === TStatus.ERROR) {
-    return (<PageLayout>
-      <div className="centerDisplay">
-        <p>Error</p>
-      </div>
-    </PageLayout>);
+    return (
+      <PageLayout>
+        <div className="centerDisplay">
+          <p>Error</p>
+        </div>
+      </PageLayout>
+    );
   }
   return (
     <PageLayout>
