@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { TStatus } from '../type/TMainPage';
+import { TStatus, TSortOrder, TSortField } from '../type/TMainPage';
 import { TPageContext } from '../type/TPageProvider';
 
 const defaultContextValue = {
@@ -8,6 +8,10 @@ const defaultContextValue = {
     highestEarning: '',
     employeeData: [],
     newJoinerDate: '',
+    sort: {
+      order: TSortOrder.DESC,
+      field: TSortField.JOINED_DATE,
+    },
   },
   setPage: () => {},
 };

@@ -6,6 +6,8 @@ import {
   TEmployeePageData,
   TEmployeeProcessItem,
   TStatus,
+  TSortField,
+  TSortOrder,
 } from '../type/TMainPage';
 
 const getCurrencyFormat = (salary: number): string => {
@@ -61,7 +63,42 @@ const getNewJoinerDate = (
   return getDateFormat(newJoinerDate);
 };
 
-const getEmployeeData = async (): Promise<TEmployeePageData> => {
+enum TField {
+  DATE_VALUE = 'dateValue',
+  FULL_NAME = 'fullName',
+  SALARY = 'salary',
+}
+
+const mappingField = {
+  [TSortField.JOINED_DATE]: TField.DATE_VALUE,
+  [TSortField.FULL_NAME]: TField.FULL_NAME,
+  [TSortField.SALARY]: TField.SALARY,
+};
+
+const sortFunction = {
+  [TSortOrder.DESC]: (
+    processedData: Array<TEmployeeProcessItem>,
+    field: TField,
+  ) =>
+    processedData.sort((a, b) =>
+      a[field] > b[field] ? -1 : b[field] > a[field] ? 1 : 0,
+    ),
+  [TSortOrder.ACS]: (
+    processedData: Array<TEmployeeProcessItem>,
+    field: TField,
+  ) =>
+    processedData.sort((a, b) =>
+      a[field] > b[field] ? 1 : b[field] > a[field] ? -1 : 0,
+    ),
+};
+
+const getEmployeeData = async ({
+  order,
+  field,
+}: {
+  order: TSortOrder;
+  field: TSortField;
+}): Promise<TEmployeePageData> => {
   const employeeDataUrl =
     'https://gist.githubusercontent.com/yousifalraheem/354fb07f27f3c145b78d7a5cc1f0da0b/raw/7561f6827775c6a002a93b6b99b12c3c9454a617/data.json';
   try {
@@ -70,8 +107,9 @@ const getEmployeeData = async (): Promise<TEmployeePageData> => {
     const processedData: Array<TEmployeeProcessItem> = employeeData.map(
       mapEmplyeeData,
     );
-    const sortedProcessedData = processedData.sort((a, b) =>
-      a.dateValue > b.dateValue ? -1 : b.dateValue > a.dateValue ? 1 : 0,
+    const sortedProcessedData = sortFunction[order](
+      processedData,
+      mappingField[field],
     );
 
     return {
@@ -79,6 +117,10 @@ const getEmployeeData = async (): Promise<TEmployeePageData> => {
       highestEarning: getHighestEarning(sortedProcessedData),
       newJoinerDate: getNewJoinerDate(sortedProcessedData),
       employeeData: sortedProcessedData,
+      sort: {
+        order: TSortOrder.DESC,
+        field: TSortField.JOINED_DATE,
+      },
     };
   } catch (e) {
     console.error('Error ', e);
