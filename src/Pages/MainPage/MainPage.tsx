@@ -11,7 +11,8 @@ import PageProvider from '../PageProvider/PageProvider';
 const MainPage = () => {
   const defaultContextValue = {
     status: TStatus.LOADING,
-    highestEarning: 0,
+    highestEarning: 'RM 0.00',
+    newJoinerDate: 'dd/mm/yyy',
     employeeData: [],
   };
 
@@ -25,29 +26,35 @@ const MainPage = () => {
     getData();
   }, []);
 
+  if (page.status === TStatus.DONE) {
+    return (
+      <PageProvider value={{ page, setPage }}>
+        <PageLayout>
+          <div>
+            <EmployeeInformation />
+            <p>data recieved</p>
+            <Button>testing</Button>
+          </div>
+        </PageLayout>
+      </PageProvider>
+    );
+  } else if (page.status === TStatus.ERROR) {
+    <PageLayout>
+      <p>Error</p>
+    </PageLayout>;
+  }
   return (
-    <PageProvider value={{ page, setPage }}>
-      <PageLayout>
-        <div>
-          <EmployeeInformation />
-          <p>data recieved</p>
-          <Button>testing</Button>
-        </div>
-      </PageLayout>
-    </PageProvider>
+    <PageLayout>
+      <div>
+        <p>loading</p>
+        <Spinner animation="grow" />
+        <Spinner animation="grow" />
+        <Spinner animation="grow" />
+        <Spinner animation="grow" />
+        <Spinner animation="grow" />
+      </div>
+    </PageLayout>
   );
-  // return (
-  //   <PageLayout>
-  //     <div>
-  //       <p>loading</p>
-  //       <Spinner animation="grow" />
-  //       <Spinner animation="grow" />
-  //       <Spinner animation="grow" />
-  //       <Spinner animation="grow" />
-  //       <Spinner animation="grow" />
-  //     </div>
-  //   </PageLayout>
-  // );
 };
 
 export default MainPage;

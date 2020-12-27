@@ -1,9 +1,14 @@
-import { createContext, useState } from 'react';
-import { TEmployeePageData, TStatus } from '../type/TMainPage';
+import { createContext } from 'react';
+import { TStatus } from '../type/TMainPage';
 import { TPageContext } from '../type/TPageProvider';
 
 const defaultContextValue = {
-  page: { status: TStatus.LOADING, highestEarning: 0, employeeData: [] },
+  page: {
+    status: TStatus.LOADING,
+    highestEarning: '',
+    employeeData: [],
+    newJoinerDate: '',
+  },
   setPage: () => {},
 };
 

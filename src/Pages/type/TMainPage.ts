@@ -1,6 +1,7 @@
 export interface TDateFormat {
   dateISOFromat: string;
   dateDisplayFormat: string;
+  dateValue: number;
 }
 export interface TEmployeeData {
   id: number;
@@ -13,6 +14,7 @@ export interface TEmployeeData {
 export interface TEmployeeProcessItem extends TEmployeeData, TDateFormat {
   searchText: string;
   fullName: string;
+  displaySalary: string;
 }
 export enum TStatus {
   LOADING = 'loading',
@@ -21,6 +23,7 @@ export enum TStatus {
 }
 export interface TEmployeePageData {
   status: TStatus;
-  highestEarning: number;
+  highestEarning: string;
+  newJoinerDate: string;
   employeeData: Array<TEmployeeProcessItem | null>;
 }

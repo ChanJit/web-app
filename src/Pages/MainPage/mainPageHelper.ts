@@ -8,10 +8,22 @@ import {
   TStatus,
 } from '../type/TMainPage';
 
+const getCurrencyFormat = (salary: number): string => {
+  return new Intl.NumberFormat('en-EN', {
+    style: 'currency',
+    currency: 'MYR',
+  }).format(salary);
+};
+
+const getDateFormat = (date: number | string): string => {
+  return dayjs(date).format('DD-MM-YYYY');
+};
+
 const convertDateFormat = (isoDateFormat: string): TDateFormat => {
   return {
     dateISOFromat: new Date(isoDateFormat).toISOString(),
-    dateDisplayFormat: dayjs(isoDateFormat).format('DD-MM-YYYY'),
+    dateDisplayFormat: getDateFormat(isoDateFormat),
+    dateValue: new Date(isoDateFormat).valueOf(),
   };
 };
 export const convertDateFormatForTest = convertDateFormat;
@@ -19,20 +31,34 @@ export const convertDateFormatForTest = convertDateFormat;
 const mapEmplyeeData = (employee: TEmployeeData): TEmployeeProcessItem => {
   const dateFromat = convertDateFormat(employee.dateJoined);
   const fullName = `${employee.firstname} ${employee.lastname}`;
-  const salaryFormat = `RM ${employee.salary}.00`;
+  const displaySalary = getCurrencyFormat(employee.salary);
   return {
     ...employee,
     fullName,
-    searchText: `${fullName} ${dateFromat.dateDisplayFormat} ${salaryFormat}`,
+    searchText: `${fullName} ${dateFromat.dateDisplayFormat} ${displaySalary}`,
+    displaySalary,
     ...dateFromat,
   };
 };
 
-const getHighestEarning = (employeeData: Array<TEmployeeData>) => {
-  return Math.max.apply(
+const getHighestEarning = (
+  employeeData: Array<TEmployeeProcessItem>,
+): string => {
+  const highestEarning = Math.max.apply(
     Math,
-    employeeData.map((o: TEmployeeData) => o.salary),
+    employeeData.map((o: TEmployeeProcessItem) => o.salary),
   );
+  return getCurrencyFormat(highestEarning);
+};
+
+const getNewJoinerDate = (
+  employeeData: Array<TEmployeeProcessItem>,
+): string => {
+  const newJoinerDate = Math.max.apply(
+    Math,
+    employeeData.map((o: TEmployeeProcessItem) => o.dateValue),
+  );
+  return getDateFormat(newJoinerDate);
 };
 
 export default async (): Promise<TEmployeePageData> => {
@@ -41,16 +67,22 @@ export default async (): Promise<TEmployeePageData> => {
   try {
     const result = await fetch(employeeDataUrl);
     const employeeData: Array<TEmployeeData> = await result.json();
+    const processedData: Array<TEmployeeProcessItem> = employeeData.map(
+      mapEmplyeeData,
+    );
+
     return {
       status: TStatus.DONE,
-      highestEarning: getHighestEarning(employeeData),
-      employeeData: employeeData.map(mapEmplyeeData),
+      highestEarning: getHighestEarning(processedData),
+      newJoinerDate: getNewJoinerDate(processedData),
+      employeeData: processedData,
     };
   } catch (e) {
     console.error('Error ', e);
     return {
       status: TStatus.ERROR,
-      highestEarning: 0,
+      highestEarning: 'RM 0.00',
+      newJoinerDate: 'dd/mm/yyyy',
       employeeData: [],
     };
   }
