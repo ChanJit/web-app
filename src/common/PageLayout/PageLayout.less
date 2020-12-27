@@ -1,0 +1,20 @@
+@import '../../common/screenSize.less';
+@import 'bootstrap-less-port';
+
+.app {
+  background-color: @white;
+  width: 100vw;
+  height: 100vh;
+  @media @desktop {
+    max-width: 1200px;
+    padding: @row * 4px @column * 8px;
+  }
+}
+.backdrop {
+  display: flex;
+  background-color: @gray-200;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

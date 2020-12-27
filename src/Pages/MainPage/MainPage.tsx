@@ -4,6 +4,7 @@ import { TEmployeePageData } from './TMainPage';
 import getEmployeeData from './mainPageHelper';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import PageLayout from '../../common/PageLayout/PageLayout';
 import EmployeeInformation from './components/EmployeeInformation/EmployeeInformation';
 
 const MainPage = () => {
@@ -22,26 +23,26 @@ const MainPage = () => {
 
   if (false) {
     return (
-      <div className="backdrop">
-        <div className="app">
+      <PageLayout>
+        <div>
           <EmployeeInformation />
           <p>data recieved</p>
           <Button>testing</Button>
         </div>
-      </div>
+      </PageLayout>
     );
   }
   return (
-    <div className="backdrop">
-      <div className="app">
+    <PageLayout>
+      <div>
         <p>loading</p>
         <Spinner animation="grow"/>
         <Spinner animation="grow"/>
         <Spinner animation="grow"/>
         <Spinner animation="grow"/>
         <Spinner animation="grow"/>
-      </div>
-    </div>
+        </div>
+      </PageLayout>
   );
 };
 
