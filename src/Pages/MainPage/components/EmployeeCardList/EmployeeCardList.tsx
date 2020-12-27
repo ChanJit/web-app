@@ -1,11 +1,19 @@
-import React from 'react';
-import { BsPeopleFill } from 'react-icons/bs';
+import React, { useContext } from 'react';
+import { PageContext } from '../../../PageProvider/PageProvider';
 
-export default () => {
+const EmployeeCardList = () => {
+  const employeeData = useContext(PageContext);
+  const employeeList = employeeData?.page?.employeeData;
   return (
     <div>
-      <BsPeopleFill />
-      <p>123</p>
+      {employeeList?.length > 0 &&
+        employeeList.map((employee) => (
+          <div>
+            <p>{`${employee?.fullName} ${employee?.displaySalary} ${employee?.dateDisplayFormat}`}</p>
+          </div>
+        ))}
     </div>
   );
 };
+
+export default EmployeeCardList;

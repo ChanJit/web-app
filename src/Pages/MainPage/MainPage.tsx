@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './MainPage.less';
 import { TEmployeePageData, TStatus } from '../type/TMainPage';
 import getEmployeeData from './mainPageHelper';
-import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import PageLayout from '../../common/PageLayout/PageLayout';
 import EmployeeInformation from './components/EmployeeInformation/EmployeeInformation';
+import EmployeeCardList from './components/EmployeeCardList/EmployeeCardList';
 import PageProvider from '../PageProvider/PageProvider';
 
 const MainPage = () => {
@@ -30,11 +30,8 @@ const MainPage = () => {
     return (
       <PageProvider value={{ page, setPage }}>
         <PageLayout>
-          <div>
-            <EmployeeInformation />
-            <p>data recieved</p>
-            <Button>testing</Button>
-          </div>
+          <EmployeeInformation />
+          <EmployeeCardList />
         </PageLayout>
       </PageProvider>
     );
@@ -45,14 +42,12 @@ const MainPage = () => {
   }
   return (
     <PageLayout>
-      <div>
-        <p>loading</p>
-        <Spinner animation="grow" />
-        <Spinner animation="grow" />
-        <Spinner animation="grow" />
-        <Spinner animation="grow" />
-        <Spinner animation="grow" />
-      </div>
+      <p>loading</p>
+      <Spinner animation="grow" />
+      <Spinner animation="grow" />
+      <Spinner animation="grow" />
+      <Spinner animation="grow" />
+      <Spinner animation="grow" />
     </PageLayout>
   );
 };

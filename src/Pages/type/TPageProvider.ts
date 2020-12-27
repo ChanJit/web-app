@@ -1,4 +1,4 @@
-import { TStatus, TEmployeePageData } from './TMainPage';
+import { TEmployeePageData } from './TMainPage';
 
 export interface TPageContext {
   page: TEmployeePageData;
