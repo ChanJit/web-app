@@ -7,6 +7,7 @@ describe('Unit test for convertDateFormat', () => {
     ).toEqual({
       dateISOFromat: '1994-12-09T10:04:18.000Z',
       dateDisplayFormat: '09-12-1994',
+      dateValue: 786967458000,
     });
   });
 });
