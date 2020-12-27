@@ -92,7 +92,7 @@ export const sortFunction = {
     ),
 };
 
-const getEmployeeData = async ({
+export const getEmployeeData = async ({
   order,
   field,
 }: {
@@ -136,5 +136,3 @@ const getEmployeeData = async ({
     };
   }
 };
-
-export default getEmployeeData;
